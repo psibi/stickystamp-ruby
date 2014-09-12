@@ -56,10 +56,23 @@ class StickStamp
     end
   end
 
+  def getSpecificRecipient(recipient, id)
+    url = "/v1/recipients/" + id.to_s
+    response = get(url, recipient.serialize_to_hash.to_json)
+    res_json = JSON.parse response
+    if res_json["status"] != "success"
+      raise "StickyStamp: " + res_json["error"]
+    else
+      Recipient.serialize_to_Recipient(res_json["recipient"]) 
+    end
+  end
+
 end
   
 # r = Recipient.new("Sibi","sibi@psibi.in","add1","add2","Chennai","TN","IN","666666","777777777")
 # a = StickStamp.new("b79bdeaa19f147afbbe2d7ef9dee9be2")
 # a.createRecipient(r)
+# a.getSpecificRecipient(r,8)
+
 # RestClient.post "http://api.stickystamp.com/v1/recipients", r.serialize_to_hash.to_json, :content_type => :json, :accept => :json
 
