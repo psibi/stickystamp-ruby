@@ -150,6 +150,17 @@ class StickStamp
     end
   end
 
+  def getSpecificShipment(id)
+    response = get("/v1/shipments/" + id, "")
+    res_json = JSON.parse response
+    if res_json["status"] != "success"
+      raise "StickyStamp: " + res_json["error"]
+    else
+      Shipment.serialize_to_Shipment(res_json["shipment"]) 
+    end
+  end
+    
+
 end
   
 #r = Recipient.new("Sibi","sibi@psibi.in","add1","add2","Chennai","TN","IN","666666","777777777")
