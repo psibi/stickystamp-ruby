@@ -39,10 +39,10 @@ class Recipient
                   hash_data["id"])
   end
     
-  # Show in pretty form in irb
-  # def to_s
-  #   @name + " " + @email
-  # end
+  #Show in pretty form in irb
+  def to_s
+    @name + " " + @email
+  end
 
 end
 
