@@ -5,6 +5,7 @@ require 'uri'
 require './recipient'
 require './shipment'
 require './sku'
+require './merchandise'
 
 class StickStamp
 
@@ -61,6 +62,44 @@ class StickStamp
       raise "StickyStamp: " + res_json["error"]
     else
       Sku.serialize_to_Sku(res_json["sku"])
+    end
+  end
+
+  def getAllMerchandise
+    response = get("/v1/merchandise","")
+    res_json = JSON.parse response
+    if res_json["status"] != "success"
+      raise "StickyStamp: " + res_json["error"]
+    else
+      merchs = []
+      res_json["merchandise"].each do |value|
+        merchs << Merchandise.serialize_to_Merchandise(value)
+      end
+    end
+    merchs
+  end
+
+  def getSpecificMerchandise(id)
+    response = get("/v1/merchandise/" + id, "")
+    res_json = JSON.parse response
+    if res_json["status"] != "success"
+      raise "StickyStamp: " + res_json["error"]
+    else
+      Merchandise.serialize_to_Merchandise(res_json["merchandise"])
+    end
+  end
+
+  def getSkuByMerchandise(id)
+    response = get("/v1/merchandise/" + id + "/skus", "")
+    res_json = JSON.parse response
+    if res_json["status"] != "success"
+      raise "StickyStamp: " + res_json["error"]
+    else
+      skus = []
+      res_json["skus"].each do |value| 
+        skus << Sku.serialize_to_Sku(value) 
+      end
+      skus
     end
   end
 
