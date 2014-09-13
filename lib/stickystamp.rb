@@ -17,16 +17,15 @@ class StickStamp
 
   def post(path, json_string)
     uri = URI(@rootURL + path)
-    req = Net::HTTP::Post.new uri.path
+    req = Net::HTTP::Post.new(uri.path, {'Content-Type' =>'application/json'})
     req.basic_auth @apikey, ""
-    req.body = json_string
-    puts json_string
+    req.body = json_string.to_s
     res = Net::HTTP.start(uri.host, uri.port, :use_ssl => true) do |http|
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       http.ssl_version = :SSLv3
       http.request req
     end
-    puts res.body
+    res.body
   end
 
   def get(path, json_string)
@@ -105,7 +104,13 @@ class StickStamp
   end
 
   def createRecipient(recipient)
-    post("/v1/recipients", recipient.serialize_to_hash.to_json)
+    response = post("/v1/recipients", recipient.serialize_to_hash.to_json)
+    res_json = JSON.parse response
+    if res_json["status"] != "success"
+      raise "StickyStamp: " + res_json["error"]
+    else
+      Recipient.serialize_to_Recipient(res_json["recipient"])
+    end
   end
 
   def getRecipients(recipient)
@@ -134,7 +139,13 @@ class StickStamp
   end
 
   def createShipment(shipment)
-    post("/v1/shipments", shipment.serialize_to_hash.to_json)
+    response = post("/v1/shipments", shipment.serialize_to_hash.to_json)
+    res_json = JSON.parse response
+    if res_json["status"] != "success"
+      raise "StickyStamp: " + res_json["error"]
+    else
+      Shipment.serialize_to_Shipment(res_json["shipment"])
+    end
   end
 
   def getShipments(shipment)
@@ -161,6 +172,12 @@ class StickStamp
     end
   end
 
+  def createGrantForm(grantform)
+    response = post("/v1/grantforms", grantform.serialize_to_hash.to_json)
+    res_json = JSON.parse response
+    puts res_json
+  end    
+  
   def getGrantForms
     response = get("/v1/grantforms","")
     res_json = JSON.parse response
@@ -200,8 +217,6 @@ end
 # RestClient.post "http://api.stickystamp.com/v1/recipients", r.serialize_to_hash.to_json, :content_type => :json, :accept => :json
 
 # s = Shipment.new()
-# {"contents": [ ["T3-HCKR-V4-S", 1], ["S2-HLGO-V1", 2] ],"recipient": { "name": "isaac", "email": "isaac@stickystamp.com", "contact_number": "888888888", "address1": "12, Krishnan Street", "address2": "West Mambalam", "city": "Chennai", "state": "Tamilnadu", "country": "India", "pincode": "600033" } }' https://api.stickystamp.com/v1/shipments
-#  = Recipient.new("Sibi","sibi@psibi.in","add1","add2","Chennai","TN","IN","666666","777777777")
 
 # r = Recipient.new("isaac","isaac@stickystamp.com","12, Krishnan Street","West Mambalam","Chennai","Tamilnadu","India","600033","888888888")
 # s = Shipment.new(r, [ ["T3-HCKR-V4-S", 1], ["S2-HLGO-V1", 2] ])
@@ -209,7 +224,3 @@ end
 # a = StickStamp.new("b79bdeaa19f147afbbe2d7ef9dee9be2")
 # a.getShipments(s)
 
-# {"id" => @id, "name" => @name, "email" => @email,
-#      "address1" => @address1, "address2" => @address2, "city" => @city,
-#      "state" => @state, "country" => @country, "pincode" => @pincode,
-#       "contact_number" => @contact_number }.reject {|k,v| v == nil}
