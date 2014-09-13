@@ -8,7 +8,7 @@ require_relative 'sku'
 require_relative 'merchandise'
 require_relative 'grantform'
 
-class StickStamp
+class StickyStamp
 
   def initialize(apikey)
     @apikey = apikey
