@@ -63,6 +63,21 @@ To get an information about specific shipment:
     => 371
     >>> shipment_371.recipient["email"]
     => "s3@s.com"
+
+Similarly you can get all the getGrantForms:
+
+    >>> api.getGrantForms
+    =>  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+You can play around with each of the objects:
+
+    >>> gforms = a.getGrantForms
+    =>
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    >>> gforms[0].id
+    => 1
+    >>> gforms[0].url
+    => "http://beta.stickystamp.com/shiptokens/convert/95d9cf352d994e67820060930fb055f8"
     
 To get the list of all Merchandise:
 
