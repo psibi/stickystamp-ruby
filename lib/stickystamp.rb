@@ -41,6 +41,8 @@ class StickStamp
     res.body
   end
   
+  private :post, :get
+
   def getSkus()
     response = get("/v1/skus","")
     res_json = JSON.parse response
@@ -175,7 +177,11 @@ class StickStamp
   def createGrantForm(grantform)
     response = post("/v1/grantforms", grantform.serialize_to_hash.to_json)
     res_json = JSON.parse response
-    puts res_json
+    if res_json["status"] != "success"
+      raise "StickyStamp: " + res_json["error"]
+    else
+      Shipment.serialize_to_Shipment(res_json["shipment"])
+    end
   end    
   
   def getGrantForms
@@ -208,19 +214,3 @@ class StickStamp
 
 end
   
-#r = Recipient.new("Sibi","sibi@psibi.in","add1","add2","Chennai","TN","IN","666666","777777777")
-#a = StickStamp.new("b79bdeaa19f147afbbe2d7ef9dee9be2")
-#a.getSpecificRecipient(r,8)
-# a.createRecipient(r)
-# a.createShipment()
-
-# RestClient.post "http://api.stickystamp.com/v1/recipients", r.serialize_to_hash.to_json, :content_type => :json, :accept => :json
-
-# s = Shipment.new()
-
-# r = Recipient.new("isaac","isaac@stickystamp.com","12, Krishnan Street","West Mambalam","Chennai","Tamilnadu","India","600033","888888888")
-# s = Shipment.new(r, [ ["T3-HCKR-V4-S", 1], ["S2-HLGO-V1", 2] ])
-
-# a = StickStamp.new("b79bdeaa19f147afbbe2d7ef9dee9be2")
-# a.getShipments(s)
-
