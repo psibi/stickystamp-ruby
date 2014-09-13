@@ -6,7 +6,7 @@ A Ruby interface for StickyStamp API.
 Usage
 ------
 
-The library makes it very easy to make Stickystamp REST API calls. Let
+The library makes it simple to interact with Stickystamp REST API. Let
 me demonstrate it through a sample `irb` session:
 
     >>> require 'stickystamp'
