@@ -20,17 +20,32 @@ the interaction with the StickyStamp servers.
     => API Key: b79bdeaa19f147afbbe2d7ef9dee9be2
 
 You pass an API key for creating a stickystamp object.
-Now create a sample recipient:
+Now you can create a sample recipient object like this:
 
     >>> r = Recipient.new("isaac","isaac@stickystamp.com","12, Krishnan Street","West Mambalam","Chennai","Tamilnadu","India","600033","888888888")
     => isaac isaac@stickystamp.com
 
-Now get a specific recipient using an id passed to it:
+To create it in the server, all you have to do is:
 
-    >>> api.getSpecificRecipient(8)
+    >>> recipient = api.createRecipient(r)
     => isaac isaac@stickystamp.com
 
-Or, get the list of all Merchandise:
+Now you can inspect that recipient object:
+
+    >>> recipient.id
+    => 33
+
+You can also get information about a specific recipient, if you kwow
+it's id:
+
+    >>> another_recipient = api.getSpecificRecipient(33)
+    => isaac isaac@stickystamp.com
+    another_recipient.email
+    => "isaac@stickystamp.com"
+    another_recipient.country
+    => "India"
+
+To get the list of all Merchandise:
 
     >>> api.getAllMerchandise
     => [Campus Hero :tshirt, Code Ninja :tshirt, Thank You Card :postcard, Smashing Logo :sticker, Awesome Logo :sticker, Hacker :tshirt]
