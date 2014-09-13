@@ -1,7 +1,7 @@
 stickystamp-ruby
 -----------------
 
-A Ruby interface to StickStamp API.
+A Ruby interface for StickyStamp API.
 
 Usage
 ------
