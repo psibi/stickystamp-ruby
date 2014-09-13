@@ -44,7 +44,7 @@ class Shipment
                   hash_data["status"], hash_data["tracking_url"],
                   hash_data["shipping_charges"], hash_data["net_amount"], hash_data["tax"],
                   hash_data["gross_amount"], hash_data["contents"], 
-                  hash_data["id"])
+                  hash_data["id"], hash_data["dispatched_at"], hash_data["token"])
   end
     
   # Show in pretty form in irb
