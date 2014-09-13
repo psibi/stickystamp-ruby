@@ -122,9 +122,9 @@ class StickStamp
     end
   end
 
-  def getSpecificRecipient(recipient, id)
+  def getSpecificRecipient(id)
     url = "/v1/recipients/" + id.to_s
-    response = get(url, recipient.serialize_to_hash.to_json)
+    response = get(url, "")
     res_json = JSON.parse response
     if res_json["status"] != "success"
       raise "StickyStamp: " + res_json["error"]

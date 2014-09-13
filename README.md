@@ -14,7 +14,7 @@ Invoke `irb`:
     => Sibi sibi@psibi.in
     >>> a = StickStamp.new("b79bdeaa19f147afbbe2d7ef9dee9be2")
     => API Key: b79bdeaa19f147afbbe2d7ef9dee9be2
-    >>> a.getSpecificRecipient(r,8)
+    >>> a.getSpecificRecipient(8)
     => isaac isaac@stickystamp.com
     >>> a.getAllMerchandise
     => [Campus Hero :tshirt, Code Ninja :tshirt, Thank You Card :postcard, Smashing Logo :sticker, Awesome Logo :sticker, Hacker :tshirt]
