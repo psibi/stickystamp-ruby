@@ -71,14 +71,21 @@ Similarly you can get all the getGrantForms:
 
 You can play around with each of the objects:
 
-    >>> gforms = a.getGrantForms
+    >>> gforms = api.getGrantForms
     =>
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
     >>> gforms[0].id
     => 1
     >>> gforms[0].url
     => "http://beta.stickystamp.com/shiptokens/convert/95d9cf352d994e67820060930fb055f8"
-    
+
+To get a specific grantform:
+
+    >>> gform_10 = api.getSpecificGrantForm "10"
+    => 10
+    >>> gform_10.url
+    => "http://beta.stickystamp.com/shiptokens/convert/810cc9a6301c491b84a352ccf0e48ecb"
+
 To get the list of all Merchandise:
 
     >>> api.getAllMerchandise
@@ -94,9 +101,14 @@ them individually:
     >>> b[0].id
     => "T1-CMPSH"
 
+To get information about specific merchandise:
+
+    >>> tshirt_merchandise = a.getSpecificMerchandise "T1-CMPSH"
+    => Campus Hero :tshirt
+    >>> tshirt_merchandise.tshirt_type
+    => "Cotton Roundneck"
+
 Isn't that beautiful?
-
-
 
 License
 --------
