@@ -150,8 +150,8 @@ class StickyStamp
     end
   end
 
-  def getShipments(shipment)
-    response = get("/v1/shipments", shipment.serialize_to_hash.to_json)
+  def getShipments
+    response = get("/v1/shipments", "")
     res_json = JSON.parse response
     if res_json["status"] != "success"
       raise "StickyStamp: " + res_json["error"]
