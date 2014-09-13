@@ -10,7 +10,7 @@ class GrantForm
                  from_title=nil, choices=nil, shipment=nil, revoked=nil,
                  expired=nil)
     @contents = contents
-    @recipient = recipient.serialize_to_hash
+    @recipient = recipient.nil? ? nil : recipient.serialize_to_hash
     @id = id
     @token = token
     @url = url
@@ -37,7 +37,8 @@ class GrantForm
   end
 
   def self.serialize_to_GrantForm(hash_data)
-    GrantForm.new(hash_data["contents"], Recipient.serialize_to_Recipient(hash_data["recipient"]), 
+    GrantForm.new(hash_data["contents"], 
+                  hash_data["recipient"].nil? ? nil : Recipient.serialize_to_Recipient(hash_data["recipient"]), 
                   hash_data["id"], hash_data["token"], hash_data["url"],
                   hash_data["is_valid"], hash_data["converted"], hash_data["expires_on"],
                   hash_data["mailed_to"], hash_data["from_title"], hash_data["choices"],
@@ -45,7 +46,7 @@ class GrantForm
   end
 
   def to_s
-    @recipient["name"]
+    @id
   end
 
 end
