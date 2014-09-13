@@ -1,5 +1,9 @@
 class GrantForm
 
+  attr_accessor :id, :token, :url, :is_valid, :converted,
+  :expires_on, :mailed_to, :from_title, :choices, :shipment,
+  :revoked, :expired
+
   def initialize(id=nil, token=nil, url=nil, is_valid=nil,
                  converted=nil, expires_on=nil, mailed_to=nil,
                  from_title=nil, choices=nil, shipment=nil, revoked=nil,

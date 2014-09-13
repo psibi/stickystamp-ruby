@@ -1,5 +1,9 @@
 class Sku
 
+  attr_accessor :id, :category, :name, :merchandise_name,
+  :merchandise_id, :color, :size, :tshirt_type,
+  :translucent, :dimension, :dimension_unit
+
   def initialize(id=nil, category=nil, name=nil, merc_name=nil,
                  merc_id=nil, color=nil, size=nil, tshirt_type=nil,
                  translucent=nil, dimension=nil, dimension_unit=nil)

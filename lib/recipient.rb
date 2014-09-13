@@ -5,10 +5,10 @@
 # Copyright:: Copyright (c) 2014 Sibi
 # License::   MIT
 
-require 'httpclient'
-require 'json'
-
 class Recipient
+
+  attr_accessor :name, :email, :address1, :address2, :city,
+  :state, :country, :pincode, :contact_number, :id
 
   # Initialize the class with recipient details
   def initialize(name, email, address1, address2, city, state,
