@@ -52,11 +52,18 @@ To get the list of all shipments:
 
 Note that each list we got above is an object internally:
 
-    shipments = api.getShipments
+    >>> shipments = api.getShipments
     => [352, 354, 371, 448, 454, 593, 597, 670, 733, 734, 779, 792]
-    shipments[4].tax
+    >>> shipments[4].tax
     => "0.00"
 
+To get an information about specific shipment:
+
+    >>> shipment_371 = api.getSpecificShipment "371"
+    => 371
+    >>> shipment_371.recipient["email"]
+    => "s3@s.com"
+    
 To get the list of all Merchandise:
 
     >>> api.getAllMerchandise
