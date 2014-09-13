@@ -45,6 +45,18 @@ it's id:
     another_recipient.country
     => "India"
 
+To get the list of all shipments:
+
+    >>> api.getShipments
+    => [352, 354, 371, 448, 454, 593, 597, 670, 733, 734, 779, 792]
+
+Note that each list we got above is an object internally:
+
+    shipments = api.getShipments
+    => [352, 354, 371, 448, 454, 593, 597, 670, 733, 734, 779, 792]
+    shipments[4].tax
+    => "0.00"
+
 To get the list of all Merchandise:
 
     >>> api.getAllMerchandise
@@ -61,6 +73,8 @@ them individually:
     => "T1-CMPSH"
 
 Isn't that beautiful?
+
+
 
 License
 --------
