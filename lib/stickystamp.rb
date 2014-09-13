@@ -2,11 +2,11 @@ require 'net/http'
 require 'net/https'
 require 'json'
 require 'uri'
-require './recipient'
-require './shipment'
-require './sku'
-require './merchandise'
-require './grantform'
+require_relative 'recipient'
+require_relative 'shipment'
+require_relative 'sku'
+require_relative 'merchandise'
+require_relative 'grantform'
 
 class StickStamp
 
