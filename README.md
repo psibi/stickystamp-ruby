@@ -40,9 +40,9 @@ it's id:
 
     >>> another_recipient = api.getSpecificRecipient(33)
     => isaac isaac@stickystamp.com
-    another_recipient.email
+    >>> another_recipient.email
     => "isaac@stickystamp.com"
-    another_recipient.country
+    >>> another_recipient.country
     => "India"
 
 To get the list of all shipments:
@@ -103,7 +103,7 @@ them individually:
 
 To get information about specific merchandise:
 
-    >>> tshirt_merchandise = a.getSpecificMerchandise "T1-CMPSH"
+    >>> tshirt_merchandise = api.getSpecificMerchandise "T1-CMPSH"
     => Campus Hero :tshirt
     >>> tshirt_merchandise.tshirt_type
     => "Cotton Roundneck"
