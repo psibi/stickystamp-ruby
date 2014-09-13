@@ -6,6 +6,7 @@ require './recipient'
 require './shipment'
 require './sku'
 require './merchandise'
+require './grantform'
 
 class StickStamp
 
@@ -159,7 +160,30 @@ class StickStamp
       Shipment.serialize_to_Shipment(res_json["shipment"]) 
     end
   end
-    
+
+  def getGrantForms
+    response = get("/v1/grantforms","")
+    res_json = JSON.parse response
+    if res_json["status"] != "success"
+      raise "StickyStamp: " + res_json["error"]
+    else
+      gforms = []
+      res_json["grantforms"].each do |value| 
+        gforms << GrantForm.serialize_to_GrantForm(value) 
+      end
+      gforms
+    end
+  end
+
+  def getSpecificGrantForm(id)
+    response = get("/v1/grantforms/" + id,"")
+    res_json = JSON.parse response
+    if res_json["status"] != "success"
+      raise "StickyStamp: " + res_json["error"]
+    else
+      GrantForm.serialize_to_GrantForm(res_json["grantform"]) 
+    end
+  end
 
 end
   
