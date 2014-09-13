@@ -185,6 +185,10 @@ class StickStamp
     end
   end
 
+  def to_s
+    "API Key: " + @apikey
+  end
+
 end
   
 #r = Recipient.new("Sibi","sibi@psibi.in","add1","add2","Chennai","TN","IN","666666","777777777")
